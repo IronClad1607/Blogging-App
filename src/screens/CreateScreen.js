@@ -5,6 +5,7 @@ import { Context as BlogContext } from "../context/BlogContext";
 const CreateScreen = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const { addBlogPost } = useContext(BlogContext);
 
   return (
     <View>
@@ -21,7 +22,10 @@ const CreateScreen = () => {
         onChangeText={(text) => setContent(text)}
       />
 
-      <Button title="Add Blog Post"/>
+      <Button
+        title="Add Blog Post"
+        onPress={() => addBlogPost(title, content)}
+      />
     </View>
   );
 };
