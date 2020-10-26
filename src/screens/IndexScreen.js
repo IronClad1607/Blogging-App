@@ -12,9 +12,17 @@ import { Feather } from "@expo/vector-icons";
 const IndexScreen = ({ navigation }) => {
   const { state, getBlogPost, deleteBlogPost } = useContext(BlogContext);
 
-  useEffect(()=>{
+  useEffect(() => {
     getBlogPost();
-  },[])
+
+    const listener = navigation.addListener("didFocus", () => {
+      getBlogPost();
+    });
+
+    return () => {
+      listener.remove();
+    };
+  }, []);
 
   return (
     <View>
