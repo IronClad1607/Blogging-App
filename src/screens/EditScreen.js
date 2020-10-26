@@ -9,7 +9,14 @@ const EditScreen = ({ navigation }) => {
   const { state } = useContext(BlogContext);
   const blogPost = state.find((blogPost) => blogPost.id === blogID);
 
-  return <BlogPostForm />;
+  return (
+    <BlogPostForm
+      initialValues={{ title: blogPost.title, content: blogPost.content }}
+      onSubmit={(title, content) => {
+        console.log(title, content);
+      }}
+    />
+  );
 };
 
 const styles = StyleSheet.create({});
